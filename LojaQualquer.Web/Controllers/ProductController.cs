@@ -42,5 +42,33 @@ namespace LojaQualquer.Web.Controllers
                 Content = _mapper.Map<IList<ProductViewModel.ProductContent>>(products)
             });
         }
+
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> Create(ProductCreateUpdateViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View("Create", model);
+            }
+
+            var response = await _productApplication.PostAsync(_mapper.Map<ProductCreateUpdateRequest>(model));
+
+            if (response.ResponseError != null)
+            {
+                ModelState.AddModelError(string.Empty, response.ResponseError.Message);
+
+                return View(model);
+            }
+
+            return RedirectToAction("Index");
+        }
     }
 }

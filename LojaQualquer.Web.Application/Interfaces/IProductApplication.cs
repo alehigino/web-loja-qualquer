@@ -8,5 +8,6 @@ namespace LojaQualquer.Web.Application.Interfaces
     public interface IProductApplication
     {
         Task<IList<ProductResponse>> GetByFilterAsync(FilterProductRequest filter);
+        Task<ProductResponse> PostAsync(ProductCreateUpdateRequest request);
     }
 }

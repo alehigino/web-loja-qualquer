@@ -27,5 +27,21 @@ namespace LojaQualquer.Web.Application
                 }
             };
         }
+
+        public async Task<ProductResponse> PostAsync(ProductCreateUpdateRequest request)
+        {
+            var response = await _httpClient.PostAsync("/api/product", Content(request));
+
+            if (response.IsSuccessStatusCode)
+                return await Deserialize<ProductResponse>(response);
+
+            return new ProductResponse
+            {
+                StatusCode = (int)response.StatusCode,
+                ResponseError = (int)response.StatusCode == 400
+                    ? await Deserialize<ResponseError>(response)
+                    : null
+            };
+        }
     }
 }

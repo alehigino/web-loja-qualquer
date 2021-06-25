@@ -12,6 +12,7 @@ namespace LojaQualquer.Web.Mapper
             CreateMap<LoginViewModel, LoginRequest>();
             CreateMap<ProductViewModel.FilterProduct, FilterProductRequest>();
             CreateMap<ProductResponse, ProductViewModel.ProductContent>();
+            CreateMap<ProductCreateUpdateViewModel, ProductCreateUpdateRequest>();
         }
     }
 }

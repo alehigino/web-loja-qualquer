@@ -15,7 +15,7 @@ namespace LojaQualquer.Web.Application
 
         public BaseApplication(HttpClient httpClient, IUser user)
         {
-            httpClient.BaseAddress = new Uri("https://localhost:44346");
+            httpClient.BaseAddress = new Uri("https://api-loja-qualquer.azurewebsites.net");
             httpClient.DefaultRequestHeaders.Accept.Clear();
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
             httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {user.Token}");

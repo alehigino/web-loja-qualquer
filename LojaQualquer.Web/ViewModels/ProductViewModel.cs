@@ -11,14 +11,21 @@ namespace LojaQualquer.Web.ViewModels
         {
             public int ProductId { get; set; }
             public string Name { get; set; }
-            public int Category { get; set; }
-            public decimal Price { get; set; }
+            public CategoryEnum Category { get; set; }
+            public string Price { get; set; }
         }
 
         public class FilterProduct
         {
             public string Name { get; set; }
             public string Category { get; set; }
+        }
+
+        public enum CategoryEnum
+        {
+            Alimentos = 0,
+            Bebidas = 1,
+            Outros = 2
         }
     }
 }

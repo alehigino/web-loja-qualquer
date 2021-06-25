@@ -43,14 +43,14 @@ namespace LojaQualquer.Web.Controllers
             });
         }
 
-        [HttpGet]
+        [HttpGet("create")]
         [Authorize]
         public async Task<IActionResult> Create()
         {
             return View();
         }
 
-        [HttpPost]
+        [HttpPost("create")]
         [Authorize]
         public async Task<IActionResult> Create(ProductCreateUpdateViewModel model)
         {
@@ -60,6 +60,38 @@ namespace LojaQualquer.Web.Controllers
             }
 
             var response = await _productApplication.PostAsync(_mapper.Map<ProductCreateUpdateRequest>(model));
+
+            if (response.ResponseError != null)
+            {
+                ModelState.AddModelError(string.Empty, response.ResponseError.Message);
+
+                return View(model);
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet("edit/{productId}")]
+        [Authorize]
+        public async Task<IActionResult> Edit(int productId)
+        {
+            var response = await _productApplication.GetByIdAsync(productId);
+
+            if (response.ResponseError != null)
+            {
+                ModelState.AddModelError(string.Empty, response.ResponseError.Message);
+
+                return View();
+            }
+
+            return View(_mapper.Map<ProductCreateUpdateViewModel>(response));
+        }
+
+        [HttpPost("edit/{productId}")]
+        [Authorize]
+        public async Task<IActionResult> Edit(int productId, ProductCreateUpdateViewModel model)
+        {
+            var response = await _productApplication.PutAsync(productId, _mapper.Map<ProductCreateUpdateRequest>(model));
 
             if (response.ResponseError != null)
             {

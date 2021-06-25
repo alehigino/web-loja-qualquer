@@ -11,8 +11,10 @@ namespace LojaQualquer.Web.Mapper
         {
             CreateMap<LoginViewModel, LoginRequest>();
             CreateMap<ProductViewModel.FilterProduct, FilterProductRequest>();
-            CreateMap<ProductResponse, ProductViewModel.ProductContent>();
+            CreateMap<ProductResponse, ProductViewModel.ProductContent>()
+                .ForMember(x => x.Price, src => src.MapFrom(p => p.Price.ToString("c")));
             CreateMap<ProductCreateUpdateViewModel, ProductCreateUpdateRequest>();
+            CreateMap<ProductResponse, ProductCreateUpdateViewModel>();
         }
     }
 }

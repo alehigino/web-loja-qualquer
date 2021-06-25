@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 
-namespace LojaQualquer.Web.Extensions
+namespace LojaQualquer.Web.Application.Interfaces
 {
     public interface IUser
     {
         string Name { get;  }
+        string Token { get; }
         bool IsAuthenticated();
     }
 
@@ -14,6 +15,7 @@ namespace LojaQualquer.Web.Extensions
         private readonly IHttpContextAccessor _accessor;
 
         public string Name => IsAuthenticated() ? _accessor.HttpContext.User.GetClaim("Name") : "";
+        public string Token => IsAuthenticated() ? _accessor.HttpContext.User.GetClaim("JWT") : "";
         public User(IHttpContextAccessor accessor)
         {
             _accessor = accessor;

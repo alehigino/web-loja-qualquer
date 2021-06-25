@@ -2,7 +2,6 @@
 using LojaQualquer.Web.Application.Interfaces;
 using LojaQualquer.Web.Application.Models.Request;
 using LojaQualquer.Web.Application.Models.Response;
-using LojaQualquer.Web.Extensions;
 using LojaQualquer.Web.ViewModels;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;

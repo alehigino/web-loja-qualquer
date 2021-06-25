@@ -2,6 +2,7 @@
 {
     public class BaseResponse
     {
+        public int? StatusCode { get; set; }
         public ResponseError ResponseError { get; set; }
     }
 

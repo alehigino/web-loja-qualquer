@@ -1,6 +1,5 @@
 ﻿using LojaQualquer.Web.Application;
 using LojaQualquer.Web.Application.Interfaces;
-using LojaQualquer.Web.Extensions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -15,6 +14,7 @@ namespace LojaQualquer.Web.Configuration
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddScoped<IUser, User>();
+            services.AddScoped<IProductApplication, ProductApplication>();
         }
     }
 }

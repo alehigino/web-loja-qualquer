@@ -1,4 +1,4 @@
-﻿@using LojaQualquer.Web.Extensions
+﻿@using LojaQualquer.Web.Application.Interfaces
 @inject IUser User
 <ul class="navbar-nav">
     @if (User.IsAuthenticated())
@@ -7,7 +7,7 @@
             <a class="nav-link text-dark" title="Manage">@User.Name</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-controller="Login" asp-action="Logout">Sair</a>
+            <a class="btn btn-outline-danger" asp-controller="Login" asp-action="Logout">Sair</a>
         </li>
     }
 </ul>

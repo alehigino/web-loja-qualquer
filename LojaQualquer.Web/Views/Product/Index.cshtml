@@ -59,6 +59,7 @@
                         <th scope="row">@item.Price</th>
                         <th scope="row">
                             <a class="btn btn-outline-secondary" asp-controller="Product" asp-action="Edit" asp-route-productId="@item.ProductId">Editar</a>
+                            <a class="btn btn-outline-danger" asp-controller="Product" asp-action="Delete" asp-route-productId="@item.ProductId">Excluir</a>
                         </th>
                     </tr>
                 }
@@ -71,5 +72,4 @@
             </tbody>
         </table>
     </div>
-
 </div>

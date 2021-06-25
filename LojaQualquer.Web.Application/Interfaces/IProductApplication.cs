@@ -11,5 +11,6 @@ namespace LojaQualquer.Web.Application.Interfaces
         Task<ProductCreateResponse> PostAsync(ProductCreateUpdateRequest request);
         Task<ProductResponse> GetByIdAsync(int productId);
         Task<BaseResponse> PutAsync(int productId, ProductCreateUpdateRequest request);
+        Task<BaseResponse> DeleteAsync(int productId);
     }
 }

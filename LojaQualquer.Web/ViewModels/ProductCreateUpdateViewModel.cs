@@ -5,6 +5,8 @@ namespace LojaQualquer.Web.ViewModels
 {
     public class ProductCreateUpdateViewModel
     {
+        public int ProductId { get; set; }
+
         [Required(ErrorMessage = "O campo nome é obrigatório")]
         [DisplayName("Nome")]
         public string Name { get; set; }

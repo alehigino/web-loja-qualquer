@@ -78,5 +78,24 @@ namespace LojaQualquer.Web.Application
                     : null
             };
         }
+
+        public async Task<BaseResponse> DeleteAsync(int productId)
+        {
+            var response = await _httpClient.DeleteAsync($"/api/product/{productId}");
+
+            if (response.IsSuccessStatusCode)
+                return new BaseResponse
+                {
+                    StatusCode = (int)response.StatusCode
+                };
+
+            return new BaseResponse
+            {
+                StatusCode = (int)response.StatusCode,
+                ResponseError = (int)response.StatusCode == 400
+                    ? await Deserialize<ResponseError>(response)
+                    : null
+            };
+        }
     }
 }

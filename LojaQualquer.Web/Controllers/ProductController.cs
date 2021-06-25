@@ -102,5 +102,37 @@ namespace LojaQualquer.Web.Controllers
 
             return RedirectToAction("Index");
         }
+
+        [HttpGet("delete/{productId}")]
+        [Authorize]
+        public async Task<IActionResult> Delete(int productId)
+        {
+            var response = await _productApplication.GetByIdAsync(productId);
+
+            if (response.ResponseError != null)
+            {
+                ModelState.AddModelError(string.Empty, response.ResponseError.Message);
+
+                return View();
+            }
+
+            return View(_mapper.Map<ProductCreateUpdateViewModel>(response));
+        }
+
+        [HttpGet("confirmdelete/{productId}")]
+        [Authorize]
+        public async Task<IActionResult> ConfirmDelete(int productId)
+        {
+            var response = await _productApplication.DeleteAsync(productId);
+
+            if (response.ResponseError != null)
+            {
+                ModelState.AddModelError(string.Empty, response.ResponseError.Message);
+
+                return View("Delete");
+            }
+
+            return RedirectToAction("Index");
+        }
     }
 }
